@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using DomainEntities = Catalog.Domain.Entities;
 
 namespace UnitTests.Catalog.Product.Domain.Entities;
 public class ProductTest
@@ -14,7 +15,7 @@ public class ProductTest
 
         };
 
-        var product = new Product(exampleProduct.Name, exampleProduct.Description);
+        var product = new DomainEntities.Product(exampleProduct.Name, exampleProduct.Description);
 
         Assert.NotNull(product);
         Assert.Equal(exampleProduct.Name, product.Name);
