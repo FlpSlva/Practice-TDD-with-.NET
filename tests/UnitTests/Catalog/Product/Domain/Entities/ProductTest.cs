@@ -3,7 +3,7 @@
 namespace UnitTests.Catalog.Product.Domain.Entities;
 public class ProductTest
 {
-    [Fact(DisplayName = "")]
+    [Fact(DisplayName = "ShouldInstantiate")]
     [Trait("Domain", "Product - Aggregates")]
     public void ShouldInstantiate()
     {
