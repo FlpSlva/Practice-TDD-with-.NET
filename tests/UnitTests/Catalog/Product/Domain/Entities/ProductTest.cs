@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using DomainEntities = Catalog.Domain.Entities;
 
 namespace UnitTests.Catalog.Product.Domain.Entities;
@@ -56,5 +56,19 @@ public class ProductTest
         Assert.True(product.CreatedAt < dateTimeAfter);
         Assert.Equal(isActive, product.IsActive);
 
+    }
+
+    [Theory(DisplayName = "ThrowErrorWhenNameIsEmpty")]
+    [Trait("Domain", "Product - Aggregates")]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData("   ")]
+    public void ThrowErrorWhenNameIsEmpty(string? name)
+    {
+        Action action = () =>
+            new DomainEntities.Product(name, "Product Description!");
+
+        var exceptions = Assert.Throws<EntityValidationException>(action);
+        Assert.Equal("Name should not be empty or null", exceptions.Message);
     }
 }
