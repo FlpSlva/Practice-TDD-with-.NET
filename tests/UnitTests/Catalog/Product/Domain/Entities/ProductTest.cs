@@ -1,3 +1,4 @@
+﻿using Catalog.Domain.Exceptions;
 using Xunit;
 using DomainEntities = Catalog.Domain.Entities;
 
@@ -71,4 +72,16 @@ public class ProductTest
         var exceptions = Assert.Throws<EntityValidationException>(action);
         Assert.Equal("Name should not be empty or null", exceptions.Message);
     }
+
+    [Fact(DisplayName = "ThrowErroWhenDescriptionIsNull")]
+    [Trait("Domain", "Product - Aggregates")]
+    public void ThrowErroWhenDescriptionIsNull()
+    {
+        Action action = () =>
+                new DomainEntities.Product("Name Product", null!);
+
+        var exceptions = Assert.Throws<EntityValidationException>(action);
+        Assert.Equal("Description should not be null", exceptions.Message);
+    }
+
 }
