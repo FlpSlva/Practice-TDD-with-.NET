@@ -26,6 +26,7 @@ public class ProductTest
         Assert.NotEqual(default(DateTime), product.CreatedAt);
         Assert.True(product.CreatedAt > dateTimeBefore);
         Assert.True(product.CreatedAt < dateTimeAfter);
+        Assert.True(product.IsActive);
         
     }
 }
